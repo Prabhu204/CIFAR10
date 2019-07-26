@@ -1,0 +1,6 @@
+.ipynb_checkpoints/
+mnist cnn.py
+model.weights.best.hdf5
+model.weights.best_.hdf5
+.idea/
+mnist cnn.ipynb
