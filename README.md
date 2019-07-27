@@ -13,6 +13,8 @@
     <p>9  truck</p>
 - The model was composed of 3 Conv+ 2FC
 - The model performance was test for each epoch.
+
+
     |          | Trainset | Testset |
     |----------|----------|---------|
     | Loss     | 0.1851   | 2.3147  |
