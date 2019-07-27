@@ -15,13 +15,13 @@ transform = tf.Compose([tf.ToTensor(), tf.Normalize((0.5,0.5,0.5),(0.5,0.5,0.5))
 
 def load_data(path, transform, download= True, train= True,shuffle=True):
     dataset = torchvision.datasets.CIFAR10(root=path,train=train,transform= transform, download=download)
-    datasetloader = DataLoader(dataset=dataset, batch_size= 64, shuffle=True)
+    datasetloader = DataLoader(dataset=dataset, batch_size= 256, shuffle=True)
     return dataset, datasetloader
 
 classes = ('plane', 'car', 'bird', 'cat', 'deer', 'dog', 'frog', 'horse', 'ship', 'truck')
 
 trainset, trainloader = load_data(path='./data', transform= transform, train= True, download= True, shuffle=True)
-testset, testloader = load_data(path='./data', transform= transform, train= False, download= True, shuffle=False)
+testset, testloader = load_data(path='./data', transform= transform, train= False, download= True, shuffle=True)
 
 # images, lables = iter(trainloader).__next__()  # check the size of the image.
 
@@ -47,10 +47,10 @@ class Cifar_model(nn.Module):
 device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
 model  = Cifar_model().to(device)
 criterion = nn.CrossEntropyLoss()
-optimizer = optim.Adam(model.parameters(), lr= 0.001)
+optimizer = optim.SGD(model.parameters(), lr= 0.01, momentum=0.9)
 
 # train network
-for epoch in range(35):
+for epoch in range(50):
     model.train()
     train_loss = 0
     total_predicted = []
@@ -87,8 +87,8 @@ for epoch in range(35):
     test_predictions = []
     test_targets = []
     test_loss = 0
-    for idx, dataset in enumerate(testloader):
-        input, target = dataset[0].to(device), dataset[1].to(device)
+    for idx, t_dataset in enumerate(testloader):
+        input, target = t_dataset[0].to(device), t_dataset[1].to(device)
         predict_test = model(input)
         loss = criterion(predict_test, target)
         test_loss += loss.item()
@@ -105,7 +105,6 @@ for epoch in range(35):
                                                                                        metrics.accuracy_score( test_targets, test_predictions),
                                                                                        test_loss/len(testloader),
                                                                                        metrics.confusion_matrix(test_targets, test_predictions)))
-    model.train()
 
 
 
