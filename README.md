@@ -11,7 +11,7 @@
     <p>7  horse</p>
     <p>8  ship</p>
     <p>9  truck</p>
-- The model was composed of 3 Conv+ 2FC
+- The model was composed of 3 Conv + 2FC
 - The model performance was test for each epoch. The train and test results per epoch can be seen in [Result](results) directory
 
 
