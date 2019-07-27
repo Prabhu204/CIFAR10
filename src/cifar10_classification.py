@@ -105,6 +105,3 @@ for epoch in range(50):
                                                                                        metrics.accuracy_score( test_targets, test_predictions),
                                                                                        test_loss/len(testloader),
                                                                                        metrics.confusion_matrix(test_targets, test_predictions)))
-
-
-
