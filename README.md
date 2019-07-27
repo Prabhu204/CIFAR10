@@ -20,4 +20,4 @@
     | Loss     | 0.1851   | 2.3147  |
     | Accuracy | 0.9334   | 0.6431  |
 
-- The content of this repository has referenced from [Pytorch tutorial](https://pytorch.org/tutorials/beginner/blitz/cifar10_tutorial.html). I thank Pytorch for providing a thorough explanation.
+- The content of this repository has referenced from [Pytorch tutorial](https://pytorch.org/tutorials/beginner/blitz/cifar10_tutorial.html). I thank *Pytorch community* for providing such a thorough explanation.
